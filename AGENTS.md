@@ -18,3 +18,6 @@ Run python3 -m unittest discover -s tests -v after manager changes. Validate gen
 
 ## Current stage
 v0.1 implements seven workflows extracted from the user's named pinned chats, four content areas, native adapters, updates, checks, backup/restore and plugin export. See VALIDATION.md for exact installation and test status. Keep this context updated after meaningful architecture changes.
+
+## Multi-device collaboration
+Canonical remote: https://github.com/WORMMMMMM/personal-agent-pack (private). Pull with --ff-only before editing; inspect and reconcile local changes or divergent history without force pushes. Validate then update only installed local clients after pulling. Commit reviewed source changes and push when authorized. Credentials, installation ledgers, backups and scheduler state stay device-local. See README.md for onboarding and synchronization.

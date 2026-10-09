@@ -101,9 +101,50 @@ python3 hub.py export
 
 原件永远在本目录四部分中，exports 与客户端技能目录是生成副本。更新只需维护原件。
 
+## 多设备协同
+
+私有主库：https://github.com/WORMMMMMM/personal-agent-pack
+
+新设备先登录自己的 GitHub 账户，然后克隆并接入需要的客户端（macOS/Linux，Python 3.9+）：
+
+```sh
+git clone https://github.com/WORMMMMMM/personal-agent-pack.git
+cd personal-agent-pack
+python3 hub.py validate
+python3 hub.py install codex
+# 使用 Claude Code 的设备再运行：
+python3 hub.py install claude
+```
+
+已有同名技能时先预览差异，再按前述迁移流程处理。每台设备独立配置 Notion、Calendar 等账号授权；源会话、自动化与本机路径不保证在其他设备可访问，需要核实或调整导航。
+
+每次修改主库前先检查工作区，再拉取：
+
+```sh
+git status --short
+git pull --ff-only
+```
+
+有未提交修改时先保存、提交并核对差异；遇到分叉或冲突先合并，禁止强制覆盖远端。编辑原件后：
+
+```sh
+python3 hub.py validate
+# 对本机已接入的客户端分别执行：
+python3 hub.py update codex
+# python3 hub.py update claude
+git add profile preferences navigation skills manifest.json adapters
+git diff --cached
+git commit -m "Update personal preferences and workflows"
+git push
+```
+
+如果改动了管理工具或文档，也应检查并提交对应文件；工具改动需先运行测试。在其他设备执行 `git pull --ff-only` 后，运行 `validate` 和已接入客户端的 `update` 才完成应用。GitHub 同步源文件，不自动刷新各设备的配置，也不会后台自动推送。建议一次只在一台设备编辑同一份偏好或技能，切换前推送。
+
+只同步主库；客户端安装状态、原文件备份和凭据留在设备本地。不要把整个 ~/.codex、~/.claude 或 ~/.agentpack 放进仓库。便携 ZIP 是导出快照；多设备长期协同使用 Git 克隆目录。
+
 ## 版本与验证
 
-主库使用本地 Git 保存版本；不自动发布远程仓库。内容摘要会标识当前实际版本，即使尚未更改发布版本号，也能发现待同步修改。日常同步不会自动提交你的编辑，可让 agent 在审核修改后保存一次本地版本。
+主库使用 Git 保存版本，并由用户授权发布到 GitHub 私有仓库；日常修改不会自动推送。内容摘要会标识当前实际版本，即使尚未更改发布版本号，也能发现待同步修改。日常同步不会自动提交你的编辑，可让 agent 在审核修改后保存一次本地版本。
 
 ```sh
 python3 -m unittest discover -s tests -v
