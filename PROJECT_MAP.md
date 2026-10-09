@@ -1,0 +1,112 @@
+# Project map
+
+这里记录项目与工作领域的入口。最新进度、业务记录和详细上下文留在原处；开始工作前从入口读取。路径与会话 ID 是定位线索，不保证每台设备都能访问。
+
+## 个人 Skill Hub
+
+- 用途：维护个人信息、偏好、工作流与本地图。
+- 主库：https://github.com/WORMMMMMM/personal-agent-pack （私有）
+- 本地位置：当前克隆目录；不固定某台设备的绝对路径。
+- 工作约定：[AGENTS.md](AGENTS.md)；维护方式：[维护技能](skills/maintain-personal-hub/SKILL.md)。
+
+## 工作领域与资料入口
+
+### calendar
+
+- service: Google Calendar
+- calendar_id: primary
+- timezone: Asia/Shanghai
+- lookup: 先读取当前连接账户与日历，再按绝对日期的有限时间窗查询；完整分页。默认使用日历原有提醒。
+- freshness: 以当前日历事件为准；旧会话只帮助消歧，不能证明事件仍存在。
+- connector_policy: 使用原生连接器或已经配置的 MCP/API 工具；未明确要求时不改用浏览器。
+- source_thread: 019ef52b-2b22-7443-867e-ff48b91ca7dc
+
+### Diary
+
+- service: Notion
+- title: Diary
+- url: https://www.notion.so/7045a496edab4b9b896586b6aff25a53
+- data_source: collection://34a17deb-ccf7-4166-a1c1-b95246357d1a
+- action_view: view://3701d33e-29f7-817a-ae1f-000c1f8f6563
+- fields: title: 标题；datetime: 时间；date: 日期；type: 类型；original: 原文
+- lookup: 读取 schema，按行动发生日期查询；读取原文和起止时间查重、校正。
+- freshness: 以 Notion 实时记录和视图过滤为准；导航只保存定位信息。
+- verified_on: 2026-10-09
+- verification: 本会话成功读取数据源 schema；未读取或复制日记条目。
+- source_thread: 019e7913-0c15-7082-8813-681ebd27d93e
+
+### 目标和工作计划
+
+- service: Notion
+- title: 目标和工作计划
+- url: https://app.notion.com/p/1f21d33e29f780f5ae6dfeef083cf174
+- data_source: collection://1f21d33e-29f7-801c-98a3-000b951aed27
+- lookup: 读取当前 schema，查询目标状态和目标页，再找相应子页面、每日记录及提醒约定。
+- freshness: 活跃目标、目标数值、周期起点和提醒资格均从目标页读取；不在 Hub 固定。
+- verified_on: 2026-10-09
+- verification: 本会话成功读取数据源 schema。
+- source_thread: 019e9d92-b463-7eb3-b29e-195acdc0507a
+
+### 减脂每日记录
+
+- service: Notion
+- title: 减脂每日记录
+- data_source: collection://6780d0cf-4f44-4204-9d8f-78e8cb218cac
+- lookup: 从当前目标页核实子数据库关联，按当地日期查询；一个目标一天一条结构化记录。
+- freshness: 此位置来自现有技能，运行时重新核实。当前体重、目标值和饮食周期不复制进 Hub。
+
+### 思维场
+
+- service: Notion
+- title: 思维场
+- url: https://app.notion.com/p/15cc3a98bd1a4c9d93d37127ff308a05
+- lookup: 先读取页面原文，再讨论其中的认知点、思维链、信任边界和现实锚点。
+- freshness: 以页面最新内容为准；区分用户模型、外部理论与助手建议。
+- verified_on: 2026-10-09
+- verification: 成功读取页面；正文仍在 Notion。
+- source_thread: 019fd6b7-4d63-7ef1-b5f3-612293aa522c
+
+### My readings
+
+- service: Notion
+- title: My readings
+- data_source: collection://1dd1d33e-29f7-80b4-9078-000bc143de98
+- lookup: 按论文或主题查询现有阅读笔记；保留作者摘录与用户批注的来源。
+- verified_on: 2026-10-09
+- verification: 成功读取数据源 schema。
+
+### 文章输出
+
+- source_thread: 01a08b48-481b-7d91-858e-59d23efe5365
+- title: 文章输出
+- lookup: 优先用本次提供的原文、论文和批注；历史文章按会话或本地路径检索，仅在相关时读取。
+- local_readings: ~/Readings
+- freshness: 当前任务的资料优先，旧文不作为新论文事实证据。
+
+### 早报
+
+- source_thread: 019ffe20-06b3-7713-b445-5b09f664db15
+- title: 早报
+- scheduler_reference: ~/.codex/automations/automation-2/automation.toml
+- lookup: 读取已有调度配置和最近同一分支的完整结果以确定覆盖窗口、去重；用网络一手来源核实新闻。
+- freshness: 调度时间只在现有调度器维护，不由 Hub 创建或复制。历史消息中的时间与当前提示存在差异，执行时核实。
+
+### 每周回顾
+
+- source_thread: 019fff53-320a-75e2-aa55-132bff7dfc8c
+- title: 每周回顾
+- history_reference: ~/.codex/automations/automation/memory.md
+- scheduler_reference: ~/.codex/automations/automation/automation.toml
+- lookup: 读当前 Notion 目标、既有回顾历史和本周有实质内容的会话；完成标志保留在原调度记录。
+- freshness: 按自然周检查完整结果；配置变更、讨论或失败运行不算完成回顾。
+
+### daily_review
+
+- scheduler_reference: ~/.codex/automations/automation-3/automation.toml
+- context_reference: ~/Documents/Dariy/AI_CONTEXT.md
+- lookup: 日历预约为输入，Notion Diary 为输出；按所回顾日期读取当天事件与现有记录。
+- freshness: 安装 Hub 不启动回顾；被明确要求回顾或已有调度触发时才执行。
+
+## 添加项目
+
+发现用户明确的新项目，或已知项目入口发生变化时，补充：项目名称、用途、仓库或页面入口、最新状态／上下文文件位置。只写已经核实的内容；不要从旧会话推断项目仍活跃，也不要复制任务日志。

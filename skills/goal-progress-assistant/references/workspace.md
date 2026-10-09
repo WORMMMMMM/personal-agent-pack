@@ -1,6 +1,6 @@
 # 目标记录参考
 
-先读取随包生成的 resources.json，再核对实时 schema、目标页和子数据库。Hub 只保存位置及规则。
+先读取主库 [PROJECT_MAP.md](../../../PROJECT_MAP.md)，再核对实时 schema、目标页和子数据库。Hub 只保存位置及规则。
 
 ## 状态与结构
 - 现有目标数据库字段包括 Name、Status、Importance、Urgency、DDL；运行时核对。

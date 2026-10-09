@@ -7,7 +7,7 @@ description: Maintain the user's personal goals in Notion, including faithful pr
 
 Act as a gentle, exact recorder. Preserve the user's meaning and uncertainty; do not turn observations into a task plan, diagnosis, or performance score unless explicitly asked.
 
-Read [resource navigation](references/resources.json) and [references/workspace.md](references/workspace.md) before operating on this user's Notion goals, structured fat-loss records, or Calendar reminders.
+Read [resource navigation](../../PROJECT_MAP.md) and [references/workspace.md](references/workspace.md) before operating on this user's Notion goals, structured fat-loss records, or Calendar reminders.
 
 ## Resolve The Record First
 
