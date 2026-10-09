@@ -1,0 +1,7 @@
+interface:
+  display_name: "Goal Progress Assistant"
+  short_description: "Record goals, daily metrics, corrections, and reminders"
+  default_prompt: "Use $goal-progress-assistant to record this update in my goal workflow and verify the result."
+
+policy:
+  allow_implicit_invocation: true
