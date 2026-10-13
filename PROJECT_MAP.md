@@ -97,21 +97,21 @@
 
 - source_thread: 019ffe20-06b3-7713-b445-5b09f664db15
 - title: 早报
-- scheduler: Claude Code 定时任务「每日早报」https://claude.ai/code/routines/trig_015TtYfBYzcHZvpD8uUQsprR ，每天北京时间 06:00，只跑每日简报分支，结果在当次会话里并推送手机（2026-10-14 起；Codex automation-2 由用户停用）。
-- lookup: 用网络一手来源核实新闻；每天只触发一次，不需查找往期去重。
+- scheduler: Claude Code 定时任务「每日早报」https://claude.ai/code/routines/trig_015TtYfBYzcHZvpD8uUQsprR ，每天北京时间 06:00（含周六），只跑每日简报分支；Claude Code 定时任务「每周深读」https://claude.ai/code/routines/trig_01WzcV6oCZPsqdoFvujFNcye ，每周六北京时间 12:00，只跑每周深读分支。结果都在当次会话里并推送手机（2026-10-14 起；Codex automation-2 已由用户停用）。
+- lookup: 用网络一手来源核实新闻；每个分支按周期只触发一次，不需查找往期去重。
 - freshness: 调度时间以 routine 页面为准，修改时同步本条。
 
 ### 每周回顾
 
 - source_thread: 019fff53-320a-75e2-aa55-132bff7dfc8c
 - title: 每周回顾
-- scheduler: Claude Code 定时任务「每周回顾」https://claude.ai/code/routines/trig_01UYtkwK8LGvMFqoYbzGpvhv ，每周五北京时间 21:00，只读不写，结果在当次会话里（2026-10-14 起；Codex automation 由用户停用，不再做周六兜底）。
+- scheduler: Claude Code 定时任务「每周回顾」https://claude.ai/code/routines/trig_01UYtkwK8LGvMFqoYbzGpvhv ，每周五北京时间 21:00，只读不写，结果在当次会话里（2026-10-14 起；Codex automation 已由用户停用，不再做周六兜底）。
 - lookup: 读当前 Notion 目标、本周 Diary 与日历；读不到的会话来源在结果中说明。
 - freshness: 按自然周；配置变更、讨论或失败运行不算完成回顾。
 
 ### daily_review
 
-- scheduler: Claude Code 定时任务「每晚回顾」https://claude.ai/code/routines/trig_01Dhnv9iKwT9Nir1tsZ47pmr ，每天北京时间 22:30，按 schedule-and-diary 第三节执行，结果在当次会话里，补充直接回复该会话（2026-10-14 起；Codex automation-3 由用户停用）。
+- scheduler: Claude Code 定时任务「每晚回顾」https://claude.ai/code/routines/trig_01Dhnv9iKwT9Nir1tsZ47pmr ，每天北京时间 22:30，按 schedule-and-diary 第三节执行，结果在当次会话里，补充直接回复该会话（2026-10-14 起；Codex automation-3 已由用户停用）。
 - context_reference: ~/Documents/Dariy/AI_CONTEXT.md
 - lookup: 日历预约为输入，Notion Diary 为输出；按所回顾日期读取当天事件与现有记录。
 - freshness: 被明确要求回顾或上述定时任务触发时才执行。
