@@ -1,4 +1,0 @@
-interface:
-  display_name: "Natural Language Calendar"
-  short_description: "Create and correct Chinese calendar requests safely"
-  default_prompt: "Use $google-calendar-natural-language-scheduling to add this Chinese scheduling request to my calendar and verify it."

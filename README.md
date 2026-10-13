@@ -9,7 +9,7 @@
 | 个人信息 | [profile/about.md](profile/about.md) |
 | 偏好与 taste | [preferences/core.md](preferences/core.md)、[writing.md](preferences/writing.md) |
 | 团队与派单 | [TEAM.md](TEAM.md) |
-| 工作流技能 | [skills/](skills/)：生活记录、目标跟踪、日程预约、思维场、早报、每周回顾、文章输出 |
+| 工作流技能 | [skills/](skills/)：日程与生活记录、目标跟踪、早报、每周回顾、文章输出 |
 | 让 agent 维护主库的技能 | [maintain-personal-hub](skills/maintain-personal-hub/SKILL.md) |
 | 项目与资料地图 | [PROJECT_MAP.md](PROJECT_MAP.md) |
 

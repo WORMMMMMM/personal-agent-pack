@@ -6,10 +6,8 @@
 
 | 场景 | 技能 |
 |---|---|
-| 生活记录 | [notion-diary-capture](skills/notion-diary-capture/SKILL.md) |
+| 日程与生活记录 | [schedule-and-diary](skills/schedule-and-diary/SKILL.md) |
 | 目标跟踪 | [goal-progress-assistant](skills/goal-progress-assistant/SKILL.md) |
-| 日程预约 | [google-calendar-natural-language-scheduling](skills/google-calendar-natural-language-scheduling/SKILL.md) |
-| 思维场 | [thinking-field](skills/thinking-field/SKILL.md) |
 | 早报 | [fact-first-briefing](skills/fact-first-briefing/SKILL.md) |
 | 每周回顾 | [weekly-review](skills/weekly-review/SKILL.md) |
 | 文章输出 | [personal-article-writing](skills/personal-article-writing/SKILL.md) |
