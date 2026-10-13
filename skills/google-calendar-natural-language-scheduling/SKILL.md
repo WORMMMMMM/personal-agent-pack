@@ -13,7 +13,7 @@ For semester schedules, screenshots, academic week ranges, holidays, or bulk cou
 
 - Timezone: `Asia/Shanghai`.
 - Read [resource navigation](../../PROJECT_MAP.md) for the target calendar. Verify the connected profile rather than assuming an old account remains connected.
-- Use the Google Calendar connector/plugin for reads and writes. Do not open Calendar in a browser or ask for browser login unless the user explicitly requests browser operation.
+- Use the Google Calendar access configured on this machine for reads and writes (the PROJECT_MAP calendar entry names the mechanism). Do not open Calendar in a browser or ask for browser login unless the user explicitly requests browser operation.
 - Use the calendar's default reminder unless the user gives a lead time. Course series currently use a 15-minute popup only when requested or already established on that series.
 - Do not add Google Meet links unless asked.
 

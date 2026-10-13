@@ -19,15 +19,17 @@
 
 ### calendar
 
-- service: Notion（日程数据库；2026-10-13 起，Google Calendar 通道已退役）
-- database_id: 8ee00760-8cab-4ee3-afba-39d5ad76725b
-- data_source_id: 6e542f5c-7c47-412a-9c6b-64055cc8b304
-- fields: 名称（标题）；时间（日期，含起止）；地点；备注
+- service: Google Calendar（主日历，唯一真相源；2026-10-13 起）
+- calendar_id: zzm3312@outlook.com
 - timezone: Asia/Shanghai
-- lookup: 用已连接的 Notion 工具查询与写入该数据库；先解析为绝对日期时间，写入前查重，写入后回读核对。
-- freshness: 以该数据库实时内容为准；旧会话只帮助消歧。
+- access: 服务账号 calendar-bot@my-calendar-509705.iam.gserviceaccount.com，已被授予该日历“更改活动”权限；密钥在各设备 `~/.config/gcal-service-account.json`
+- tooling: 各设备的 my-calendar 技能 `scripts/gcal.py`（list / add / delete / free；默认走 127.0.0.1:7897 代理）
+- lookup: 用上述工具按绝对日期查询与写入；写入前先查冲突（free），写入后回读核对。
+- freshness: 以日历实时内容为准；旧会话只帮助消歧，不能证明事件仍存在。
+- sync: 写入后自动同步到手机系统日历与 Notion Calendar（用户侧已连接同一账户）。
+- retired: 旧 Notion「日程」库（database_id 8ee00760-8cab-4ee3-afba-39d5ad76725b）同日退役，勿再写入。
 - verified_on: 2026-10-13
-- verification: 已写入并回读一条测试日程。
+- verification: 服务账号在 Mac 与 SER8 两端完成读写实测（测试条目写入 + 回读）。
 
 ### Diary
 
