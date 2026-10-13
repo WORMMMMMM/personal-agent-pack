@@ -2,7 +2,7 @@
 
 这是用户自己的个人信息、偏好、技能与项目导航。当前明确要求和宿主权限优先。
 
-开始协作时读取 [个人信息](profile/about.md) 与 [个人偏好](preferences/core.md)。涉及项目先查 [PROJECT_MAP.md](PROJECT_MAP.md)，再去原系统读最新状态。按需读取以下技能，不必一次加载全部。
+开始协作时读取 [个人信息](profile/about.md)、[个人偏好](preferences/core.md) 与 [团队与派单](TEAM.md)。涉及项目先查 [PROJECT_MAP.md](PROJECT_MAP.md)，再去原系统读最新状态。按需读取以下技能，不必一次加载全部。
 
 | 场景 | 技能 |
 |---|---|

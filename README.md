@@ -2,12 +2,13 @@
 
 我自己保存的一份个人主库，让不同 agent 了解我、按我的习惯工作，并知道最新资料去哪里找。
 
-## 第一版只保留五部分
+## 第一版只保留六部分
 
 | 内容 | 位置 |
 |---|---|
 | 个人信息 | [profile/about.md](profile/about.md) |
 | 偏好与 taste | [preferences/core.md](preferences/core.md)、[writing.md](preferences/writing.md) |
+| 团队与派单 | [TEAM.md](TEAM.md) |
 | 工作流技能 | [skills/](skills/)：生活记录、目标跟踪、日程预约、思维场、早报、每周回顾、文章输出 |
 | 让 agent 维护主库的技能 | [maintain-personal-hub](skills/maintain-personal-hub/SKILL.md) |
 | 项目与资料地图 | [PROJECT_MAP.md](PROJECT_MAP.md) |

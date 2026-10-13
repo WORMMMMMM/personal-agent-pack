@@ -11,6 +11,12 @@
 
 ## 工作领域与资料入口
 
+### AI 空间（SER8）
+
+- 用途：AI 服务器与个人 NAS；AI 团队的常驻执行锚点（角色分工见 [TEAM.md](TEAM.md)）。
+- 入口：实验室内的固定 IP 主机 SER8；实验室外经 WireGuard 接入内网后访问。
+- lookup: 部署与运行现状以主机实际状态为准，不在主库记录进度。
+
 ### calendar
 
 - service: Google Calendar
