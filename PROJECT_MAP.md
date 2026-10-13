@@ -111,7 +111,7 @@
 
 ### daily_review
 
-- scheduler: Claude Code 定时任务「每晚回顾」https://claude.ai/code/routines/trig_01Dhnv9iKwT9Nir1tsZ47pmr ，每天北京时间 22:30，按 schedule-and-diary 第三节执行，结果在当次会话里，补充直接回复该会话（2026-10-14 起；Codex automation-3 已由用户停用）。
+- scheduler: Claude Code 定时任务「每晚回顾」https://claude.ai/code/routines/trig_01Dhnv9iKwT9Nir1tsZ47pmr ，每天北京时间 23:00，按 schedule-and-diary 第三节执行，结果在当次会话里，补充直接回复该会话（2026-10-14 起；Codex automation-3 已由用户停用）。
 - context_reference: ~/Documents/Dariy/AI_CONTEXT.md
 - lookup: 日历预约为输入，Notion Diary 为输出；按所回顾日期读取当天事件与现有记录。
 - freshness: 被明确要求回顾或上述定时任务触发时才执行。
