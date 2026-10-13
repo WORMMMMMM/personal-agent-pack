@@ -19,13 +19,15 @@
 
 ### calendar
 
-- service: Google Calendar
-- calendar_id: primary
+- service: Notion（日程数据库；2026-10-13 起，Google Calendar 通道已退役）
+- database_id: 8ee00760-8cab-4ee3-afba-39d5ad76725b
+- data_source_id: 6e542f5c-7c47-412a-9c6b-64055cc8b304
+- fields: 名称（标题）；时间（日期，含起止）；地点；备注
 - timezone: Asia/Shanghai
-- lookup: 先读取当前连接账户与日历，再按绝对日期的有限时间窗查询；完整分页。默认使用日历原有提醒。
-- freshness: 以当前日历事件为准；旧会话只帮助消歧，不能证明事件仍存在。
-- connector_policy: 使用原生连接器或已经配置的 MCP/API 工具；未明确要求时不改用浏览器。
-- source_thread: 019ef52b-2b22-7443-867e-ff48b91ca7dc
+- lookup: 用已连接的 Notion 工具查询与写入该数据库；先解析为绝对日期时间，写入前查重，写入后回读核对。
+- freshness: 以该数据库实时内容为准；旧会话只帮助消歧。
+- verified_on: 2026-10-13
+- verification: 已写入并回读一条测试日程。
 
 ### Diary
 
