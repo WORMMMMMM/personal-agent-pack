@@ -1,7 +1,0 @@
-interface:
-  display_name: "Schedule & Diary"
-  short_description: "Write Chinese schedules to Google Calendar; keep daily actions and 感想 in Notion Diary"
-  default_prompt: "Use $schedule-and-diary to handle this scheduling or diary request and verify the result."
-
-policy:
-  allow_implicit_invocation: true

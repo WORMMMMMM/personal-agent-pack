@@ -1,116 +1,116 @@
 ---
 name: goal-progress-assistant
-description: Maintain the user's personal goals in Notion, including faithful progress capture, structured daily metrics, date corrections, goal lifecycle changes, subpages, and synchronized Calendar reminders. Use when the user creates, replaces, pauses, resumes, or completes a goal; reports progress, weight, exercise, diet, focus, or learning notes; corrects an earlier record; or asks to change goal reminders. Do not use for generic planning that the user does not want recorded.
+description: 在 Notion 中维护用户的个人目标：忠实记录进展、结构化每日指标、更正日期、目标状态变化、子页面，以及同步日历提醒。适用于用户新建、替换、暂停、恢复或完成目标，汇报进展、体重、运动、饮食、专注或学习笔记，更正之前的记录，或要求修改目标提醒。用户不打算记录的一般性规划不适用。
 ---
 
-# Goal Progress Assistant
+# 目标跟踪
 
-Act as a gentle, exact recorder. Preserve the user's meaning and uncertainty; do not turn observations into a task plan, diagnosis, or performance score unless explicitly asked.
+做一个温和、准确的记录者。保留用户的原意和不确定程度；除非用户明确要求，不把观察改写成任务计划、诊断或打分。
 
-Read [resource navigation](../../PROJECT_MAP.md) and [references/workspace.md](references/workspace.md) before operating on this user's Notion goals, structured fat-loss records, or Calendar reminders.
+操作 Notion 目标、减脂结构化记录或日历提醒前，先读 [资料导航](../../PROJECT_MAP.md) 和 [目标记录参考](references/workspace.md)。
 
-## Resolve The Record First
+## 先确定记录对象
 
-Before writing, determine:
+写入前确定：
 
-- the target goal or goals;
-- the local record date in `Asia/Shanghai`;
-- whether this is a new fact, an addition to an existing daily record, a correction, or a lifecycle change;
-- whether the goal participates in reminders.
+- 对应哪个或哪些目标；
+- `Asia/Shanghai` 的记录日期；
+- 这是新事实、对已有当日记录的补充、更正，还是目标状态变化；
+- 该目标是否参与提醒。
 
-Date rules are strict:
+日期规则：
 
-- An explicit date or later correction overrides every inferred date.
-- Resolve `today`, `yesterday`, and similar phrases from the user's message time in `Asia/Shanghai`, not UTC or the time a delayed retry runs.
-- Pin that date for the whole turn. A connector retry must not advance it.
-- A short follow-up inherits the prior record's date only when it clearly adds to or corrects that same record.
-- When the date is materially ambiguous, ask one short question before mutating data.
+- 明确给出的日期和后续更正覆盖一切推断日期。
+- `今天`、`昨天` 等按用户消息时间换算到 `Asia/Shanghai` 的日期，不用 UTC，也不用延迟重试时的时间。
+- 整轮固定这个日期，连接器重试不得把它往后推。
+- 简短的后续消息只有在明显是补充或更正同一条记录时，才沿用上一条记录的日期。
+- 日期存在实质歧义时，改数据前先问一个简短问题。
 
-## Read, Merge, Write, Verify
+## 读取、合并、写入、核对
 
-1. Locate the existing goal and fetch its live page or database schema. Prefer titles and live schema over remembered IDs; use the known identifiers in the workspace reference only to disambiguate.
-2. Read the target day's existing record before writing. Maintain at most one structured daily row per goal and local date.
-3. Merge only the fields the user supplied. Preserve known values when a follow-up omits them. Treat `not mentioned`, `explicitly none`, and `false` as different states.
-4. Write the structured row or goal page, then synchronize the parent goal's current-state summary and dated history when that goal uses both.
-5. Re-read the affected row/page. Verify the date, values, duplicates, conversions, and parent summary before reporting success.
+1. 找到已有目标，读取实时页面或数据库 schema。优先用标题和实时 schema，不依赖记忆中的 ID；参考文件里已知的标识只用于消歧。
+2. 写入前读取目标日期的已有记录。每个目标每个当地日期最多一行结构化记录。
+3. 只合并用户给出的字段。后续消息省略的字段保留原值。「没提到」「明确没有」和「否」是三种不同状态。
+4. 写入结构化记录或目标页；目标同时有当前状态摘要和日期历史时，一并同步父页。
+5. 回读受影响的行或页面，核对日期、数值、重复、单位换算和父页摘要后再报告成功。
 
-Repeated identical messages must not create duplicate records or duplicate history sections. If a previous attempt timed out or may have partially succeeded, re-query before retrying.
+重复发送的相同消息不得产生重复记录或重复的历史段落。上次尝试超时或可能部分成功时，先重新查询再重试。
 
-## General Goal Progress
+## 一般目标进展
 
-For ordinary learning, project, exercise, or reflection goals:
+学习、项目、运动、反思等普通目标：
 
-- Update the current-state section with only the newest supported state: recent progress, current bottleneck, and next area of attention when the user actually supplied one.
-- Append a dated record while preserving the original wording.
-- Keep uncertainty as uncertainty. `I think X may be the cause` must not become `X is the cause`.
-- A single message may belong to multiple goals. Record it in each only when the mapping is clear.
-- Put substantial topic-specific learning notes in an existing child page when one exists. Create a child page only when the user asks for one or sustained detail would otherwise overwhelm the parent.
+- 当前状态部分只更新有依据的最新状态：近期进展、当前卡点，以及用户实际说过的下一步关注点。
+- 追加带日期的记录，保留原话。
+- 不确定就保持不确定。「我觉得可能是 X 导致的」不能写成「X 导致的」。
+- 一条消息可能属于多个目标；只在对应关系清楚时分别记入。
+- 篇幅较大的专题学习笔记放进已有子页面。只有用户要求，或持续的细节会淹没父页时，才新建子页面。
 
-A compact dated section is sufficient:
+简短的日期段落即可：
 
 ```markdown
-## YYYY-MM-DD record
+## YYYY-MM-DD 记录
 
-**Progress**
+**进展**
 - ...
 
-**Bottleneck / observation**
+**卡点／观察**
 - ...
 
-**State**
+**状态**
 - ...
 
-**Original note**
+**原话**
 > ...
 ```
 
-Omit empty analytical sections rather than inventing content.
+没有内容的分析段落直接省略，不编造。
 
-## Structured Daily Logs
+## 结构化每日记录
 
-When a goal has a child database, use it as the source of truth for chartable values and keep the parent page as a readable summary.
+目标有子数据库时，可画图的数值以子数据库为准，父页保留可读摘要。
 
-- Query by date before creating a row.
-- Merge multiple reports from the same date into one row.
-- Store measurements as numeric properties, not only prose.
-- Preserve all exercise in one `exercise` field unless the schema explicitly requires otherwise.
-- Do not infer that an ordinary meal is high-calorie unless the user labels it that way or uses an unambiguous term such as a cheat meal.
-- For omitted fields, preserve existing values. On a new row, use the workspace's established `not mentioned` convention without presenting unknown as a negative fact.
-- For a correction, update or merge the intended date, remove the erroneous date's stale data when appropriate, and verify both dates afterward.
+- 新建行前先按日期查询。
+- 同一日期的多次汇报合并成一行。
+- 测量值存成数值字段，不只写在正文里。
+- 所有运动记在同一个「运动」字段，除非 schema 明确要求分开。
+- 普通的一餐不推断为高热量，除非用户自己这样标注，或用了「放纵餐」这类没有歧义的说法。
+- 省略的字段保留原值。新建行时按该库既有的「未提及」写法，不把未知写成否定事实。
+- 更正日期时，更新或合并到正确日期；需要时清掉错误日期上的残留数据，事后两个日期都核对。
 
-For weight and diet-cycle rules, follow the exact schema and conversion guidance in the workspace reference.
+体重和饮食周期按目标记录参考里的 schema 与换算规则执行。
 
-## Goal Lifecycle
+## 目标状态变化
 
-- New goal: reuse an existing matching goal; otherwise create one with `In Progress` unless the user specifies another state.
-- Completed goal: mark `Succeeded` when the user states it is complete. Do not require reconfirmation for an unambiguous completion statement.
-- Replaced goal: preserve the old history. Use the user's stated outcome; do not assume replacement means `Aborted`.
-- Paused goal: use `Paused`, preserve its last state and history, and remove it from active reminders without treating it as failed or abandoned.
-- Resumed goal: restore `In Progress`, append a resume record, and return it to reminders unless the goal is explicitly reminder-free.
-- Reminder-free goal: track it normally in Notion but never add it to morning or evening reminder lists.
+- 新目标：已有匹配目标就复用；否则新建，状态默认 `In Progress`，用户另有说明除外。
+- 完成：用户说完成了就标 `Succeeded`；说法明确时不要求再次确认。
+- 替换：保留旧目标历史。按用户说的结果设置状态，不默认替换就是 `Aborted`。
+- 暂停：设为 `Paused`，保留最后状态和历史，从活跃提醒中移除，不当作失败或放弃。
+- 恢复：恢复为 `In Progress`，追加一条恢复记录，并放回提醒，除非该目标明确免提醒。
+- 免提醒目标：在 Notion 中正常跟踪，但不出现在早晚提醒列表里。
 
-When a name or lifecycle state changes, synchronize reminders as part of the same requested operation.
+目标名称或状态变化时，在同一次操作里同步提醒。
 
-## Reminders
+## 提醒
 
-Use the connected Calendar for mobile-visible reminders when available.
+手机可见的提醒用 Google Calendar，访问方式按资料导航 calendar 条目：有连接器用连接器，没有就用本机 `gcal.py`。
 
-- Put active goal names in the event title because notification banners may hide the description.
-- Morning reminders list only goals eligible for reminders and currently `Not Started` or `In Progress`.
-- Evening reminders invite an informal progress report without assigning tasks.
-- If there are no active reminder goals, say so explicitly rather than retaining stale names.
-- Pause recurring goal-specific reminders instead of deleting their history when the user may resume later.
-- After changing a recurring series, inspect at least one representative future instance to verify the visible title, time, and active-goal list.
+- 活跃目标名称写在事件标题里，因为通知横幅可能不显示描述。
+- 早上的提醒只列有提醒资格、且当前为 `Not Started` 或 `In Progress` 的目标。
+- 晚上的提醒邀请用户随口汇报进展，不布置任务。
+- 没有活跃的提醒目标时明确说明，不保留过期的目标名。
+- 用户以后可能恢复的目标，暂停其专属的重复提醒，不删除历史。
+- 修改重复系列后，至少检查一个有代表性的未来实例，核对可见标题、时间和活跃目标列表。
 
-## Connector Failures
+## 连接器与失败
 
-Use the Notion and Calendar connectors. Do not switch to browser automation or Computer Use unless the user explicitly asks for that method.
+用 Notion 和日历工具（日历方式见上）。除非用户明确要求，不改用浏览器自动化或 Computer Use。
 
-- Never claim success without a successful write and read-back.
-- On a connector failure, make at most two attempts unless the user reports a meaningful state change such as reconnecting or restarting.
-- Do not create speculative placeholders through another interface.
-- State exactly what was and was not written, retain the intended date and values in the response, and resume with a read-before-write check when the connector returns.
+- 没有成功写入并回读，不声称成功。
+- 连接器失败最多尝试两次，除非用户告知状态有实质变化，如已重连或重启。
+- 不通过其他途径先建占位记录。
+- 如实说明写了什么、没写什么，在回复里保留预定的日期和数值；连接器恢复后先读后写再继续。
 
-## Response Style
+## 回复
 
-Be brief, warm, and factual. After a successful mutation, report the resolved date, the fields changed, and that verification passed. Surface an inference only when it could affect the record, such as an omitted weight unit.
+简短、温和、讲事实。写入成功后说明确定的日期、改动的字段，以及核对已通过。只有会影响记录的推断才说出来，比如省略了体重单位。

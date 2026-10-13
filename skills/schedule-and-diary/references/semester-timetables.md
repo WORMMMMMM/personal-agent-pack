@@ -1,64 +1,64 @@
-# Semester Timetables
+# 学期课表
 
-Use this procedure for course-table screenshots, school calendars, academic week ranges, and bulk changes to course series.
+适用于课表截图、校历、教学周范围，以及成批修改课程系列。
 
-## Normalize Before Mutation
+## 改动前先整理
 
-Transcribe a compact source table containing one row per distinct weekly slot:
+先誊写一张简表，每个不同的每周时段一行：
 
-| Course | Weekday | Start | End | Location | Included weeks | Source note |
+| 课程 | 星期 | 开始 | 结束 | 地点 | 包含的教学周 | 来源说明 |
 |---|---|---:|---:|---|---|---|
 
-Cross-check the timetable and academic calendar before creating anything.
+创建任何事件前，先把课表和校历相互核对。
 
-- Establish the local date of academic week 1.
-- Treat phrases such as `前八周`, `后八周`, and `第2-16周` as academic-week bounds, not occurrence counts.
-- A qualifier attached to a course, such as `机器视觉都是前八周`, applies to every weekly slot for that course unless the source explicitly distinguishes the slots.
-- Preserve classroom, campus, and online markers exactly.
-- Use the school's supplied calendar for teaching-day changes and holidays; do not rely only on the generic public-holiday calendar.
-- When OCR, a screenshot, and a user correction disagree, the user's latest explicit correction wins.
+- 确定第 1 教学周的当地日期。
+- `前八周`、`后八周`、`第2-16周` 这类说法是教学周范围，不是上课次数。
+- 附在课程上的限定（如 `机器视觉都是前八周`）适用于该课程的每一个每周时段，除非来源明确区分了各个时段。
+- 教室、校区和线上标记原样保留。
+- 调课和放假以学校提供的校历为准，不只看通用法定节假日。
+- OCR、截图和用户更正不一致时，以用户最新的明确更正为准。
 
-Restate the normalized course set and semester window before a bulk write. Continue under the user's existing import request when every source field is clear; pause only for a material ambiguity.
+成批写入前，复述整理后的课程集合和学期范围。每个来源字段都清楚时，按用户原有的导入要求继续；只有实质歧义才停下来问。
 
-## Recurrence Design
+## 重复规则设计
 
-- Create one weekly master series per distinct course/weekday/time/location combination.
-- Use `Asia/Shanghai` timestamps and an RRULE whose end aligns with the final included academic week.
-- Add EXDATE entries for non-teaching dates. Ensure an excluded holiday does not shift the series into a later academic week.
-- Prefer week-bound `UNTIL` rules when supported. If using `COUNT`, verify that the generated last occurrence still lies in the intended academic week after exclusions.
-- Search the full semester window for same-name, same-slot masters before creation.
-- Keep week range and holiday behavior in the description so later edits remain understandable.
+- 每个不同的「课程／星期／时间／地点」组合建一个每周主系列。
+- 使用 `Asia/Shanghai` 时间戳，RRULE 的结束对齐最后一个包含的教学周。
+- 不上课的日期加 EXDATE；确保排除的假期不会把系列顺延到后面的教学周。
+- 支持时优先用按周截止的 `UNTIL`；用 `COUNT` 时，核对扣除排除日期后最后一次实例仍落在预定的教学周。
+- 创建前在整个学期范围搜索同名、同时段的主系列。
+- 在描述中写明周次范围和放假处理，方便以后修改时看懂。
 
-## Verification Matrix
+## 核对矩阵
 
-Do not validate a semester import only by counting events. Query representative dates and confirm:
+学期导入不能只靠数事件个数验证。查询有代表性的日期，确认：
 
-- first intended week;
-- week 2 when a course starts later;
-- final included week;
-- first excluded week;
-- each holiday or adjusted teaching day;
-- at least one ordinary middle week;
-- every slot of a course whose week range was corrected.
+- 第一个包含的教学周；
+- 课程较晚开课时的第 2 周；
+- 最后一个包含的教学周；
+- 第一个被排除的教学周；
+- 每个假期或调课日；
+- 至少一个普通的中间周；
+- 被更正过周次范围的课程的每一个时段。
 
-For `前八周` versus `后八周`, explicitly inspect one included week and week 9. A previous import incorrectly put one `机器视觉` slot in the latter half because only one of its two weekly slots was cross-checked.
+对于 `前八周` 和 `后八周`，明确检查一个包含周和第 9 周。曾有一次导入把 `机器视觉` 的一个时段错放到后半学期，原因是它每周两个时段只核对了其中一个。
 
-Report both the number of master series and actual generated occurrences after exclusions, but treat source-to-series coverage and representative-week checks as the primary proof.
+汇报主系列数量和扣除排除日期后实际生成的实例数，但以「来源到系列的覆盖」和「代表周检查」作为主要依据。
 
-## Bulk Edits
+## 成批修改
 
-For changes such as `全部提前15分钟提醒我`:
+如 `全部提前15分钟提醒我`：
 
-1. Identify the exact course master IDs.
-2. Update with `update_scope: entire_series`.
-3. Change only the requested field, preserving recurrence, EXDATE, title, location, description, attendees, and times.
-4. Batch-read every master and confirm the new reminder plus unchanged recurrence fields.
+1. 确定准确的课程主系列 ID。
+2. 用 `update_scope: entire_series` 更新。
+3. 只改要求的字段，保留重复规则、EXDATE、标题、地点、描述、参与者和时间。
+4. 逐个读取每个主系列，确认新提醒已生效、重复相关字段未变。
 
-For a time correction such as `机器视觉课程下午3点55上完`:
+如 `机器视觉课程下午3点55上完` 这类时间更正：
 
-- search all series with that title;
-- select the slot whose start time and weekday make the correction applicable;
-- update the intended entire series only;
-- verify another occurrence of that series and confirm other same-name slots were untouched.
+- 搜索所有同名系列；
+- 按开始时间和星期选出该更正适用的时段；
+- 只更新目标系列的整个系列；
+- 核对该系列的另一个实例，并确认其他同名时段没有被改动。
 
-If the user corrects a course's week range, update or replace every affected master, remove stale future instances, and rerun the full verification matrix before reporting a new occurrence total.
+用户更正某门课的周次范围时，更新或替换所有受影响的主系列，删除过时的未来实例，重新跑完整个核对矩阵后再汇报新的实例总数。

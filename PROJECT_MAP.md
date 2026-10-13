@@ -22,14 +22,14 @@
 - service: Google Calendar（主日历，唯一真相源；2026-10-13 起）
 - calendar_id: zzm3312@outlook.com
 - timezone: Asia/Shanghai
-- access: 服务账号 calendar-bot@my-calendar-509705.iam.gserviceaccount.com，已被授予该日历“更改活动”权限；密钥在各设备 `~/.config/gcal-service-account.json`
-- tooling: 各设备的 my-calendar 技能 `scripts/gcal.py`（list / add / delete / free；默认走 127.0.0.1:7897 代理）
-- lookup: 用上述工具按绝对日期查询与写入；写入前先查冲突（free），写入后回读核对。
+- access: 当前环境有 Google Calendar 连接器就用连接器（如 claude.ai，用户本人账户授权）；没有就用服务账号 calendar-bot@my-calendar-509705.iam.gserviceaccount.com，已被授予该日历“更改活动”权限，密钥在各设备 `~/.config/gcal-service-account.json`。两者都没有时如实说明尚未读写。
+- tooling: 服务账号方式用各设备的 my-calendar 技能 `scripts/gcal.py`（list / add / delete / free；默认走 127.0.0.1:7897 代理）。该脚本不在主库，只有没有连接器的设备需要。
+- lookup: 用当前可用的方式按绝对日期查询与写入；写入前先查冲突，写入后回读核对。
 - freshness: 以日历实时内容为准；旧会话只帮助消歧，不能证明事件仍存在。
 - sync: 写入后自动同步到手机系统日历与 Notion Calendar（用户侧已连接同一账户）。
 - retired: 旧 Notion「日程」库（database_id 8ee00760-8cab-4ee3-afba-39d5ad76725b）同日退役，勿再写入。
 - verified_on: 2026-10-13
-- verification: 服务账号在 Mac 与 SER8 两端完成读写实测（测试条目写入 + 回读）。
+- verification: 服务账号在 Mac 与 SER8 两端完成读写实测（测试条目写入 + 回读）；claude.ai 连接器 2026-10-14 只读核实主日历与时区，尚未做写入实测。
 
 ### Diary
 

@@ -14,6 +14,7 @@
 
 ## 明确修正优先
 - 日程与生活记录：2026-10-13 用户要求删除 thinking-field 技能；把 notion-diary-capture 与 google-calendar-natural-language-scheduling 合并为 schedule-and-diary。同日用户确认 Google Calendar 通道恢复：日程写 Google Calendar，当天活动回顾与感想写 Notion Diary。
+- 技能评审：2026-10-14 用户确认按评审修改——相对日期一律按消息时间换算北京日期；日历有连接器用连接器、否则用 gcal.py；每晚回顾先按默认约定写入再邀请补充；goal-progress-assistant 与学期课表参考改为中文，删除仅供 Codex 使用的 agents/openai.yaml。
 - 日记：2026-05-31 用户明确允许行动整理；2026-06-06 要求实际发生时间；2026-09-15 明确“那些已有的日程安排，我没有提到没做的，默认做了”。后者仅适用于日历回顾中已经结束的具体活动，不能推广到目标完成。
 - 日记展示：已有项目 AI_CONTEXT.md 与最新回顾配置要求简洁活动标题、已知起止时间、UTC Z 写入并回读。迁移修正了旧技能“统一用当前时间创建”的冲突。
 - 文章：turn 01a08be4-1f76-7d40-82ff-9d76f174e723 的平实表达要求，优先于早期“激情”；01a08c12-1526-7c40-803d-bfacfbd60390 明确图少字；01a08e08-0e82-77a0-a280-c984cb6496d2 明确反对旁观式点评批注。
