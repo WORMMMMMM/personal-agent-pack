@@ -97,25 +97,24 @@
 
 - source_thread: 019ffe20-06b3-7713-b445-5b09f664db15
 - title: 早报
-- scheduler_reference: ~/.codex/automations/automation-2/automation.toml
-- lookup: 读取已有调度配置和最近同一分支的完整结果以确定覆盖窗口、去重；用网络一手来源核实新闻。
-- freshness: 调度时间只在现有调度器维护，不由 Hub 创建或复制。历史消息中的时间与当前提示存在差异，执行时核实。
+- scheduler: Claude Code 定时任务「每日早报」https://claude.ai/code/routines/trig_015TtYfBYzcHZvpD8uUQsprR ，每天北京时间 06:00，只跑每日简报分支，结果在当次会话里并推送手机（2026-10-14 起；Codex automation-2 由用户停用）。
+- lookup: 用网络一手来源核实新闻；每天只触发一次，不需查找往期去重。
+- freshness: 调度时间以 routine 页面为准，修改时同步本条。
 
 ### 每周回顾
 
 - source_thread: 019fff53-320a-75e2-aa55-132bff7dfc8c
 - title: 每周回顾
-- history_reference: ~/.codex/automations/automation/memory.md
-- scheduler_reference: ~/.codex/automations/automation/automation.toml
-- lookup: 读当前 Notion 目标、既有回顾历史和本周有实质内容的会话；完成标志保留在原调度记录。
-- freshness: 按自然周检查完整结果；配置变更、讨论或失败运行不算完成回顾。
+- scheduler: Claude Code 定时任务「每周回顾」https://claude.ai/code/routines/trig_01UYtkwK8LGvMFqoYbzGpvhv ，每周五北京时间 21:00，只读不写，结果在当次会话里（2026-10-14 起；Codex automation 由用户停用，不再做周六兜底）。
+- lookup: 读当前 Notion 目标、本周 Diary 与日历；读不到的会话来源在结果中说明。
+- freshness: 按自然周；配置变更、讨论或失败运行不算完成回顾。
 
 ### daily_review
 
-- scheduler_reference: ~/.codex/automations/automation-3/automation.toml
+- scheduler: Claude Code 定时任务「每晚回顾」https://claude.ai/code/routines/trig_01Dhnv9iKwT9Nir1tsZ47pmr ，每天北京时间 22:30，按 schedule-and-diary 第三节执行，结果在当次会话里，补充直接回复该会话（2026-10-14 起；Codex automation-3 由用户停用）。
 - context_reference: ~/Documents/Dariy/AI_CONTEXT.md
 - lookup: 日历预约为输入，Notion Diary 为输出；按所回顾日期读取当天事件与现有记录。
-- freshness: 安装 Hub 不启动回顾；被明确要求回顾或已有调度触发时才执行。
+- freshness: 被明确要求回顾或上述定时任务触发时才执行。
 
 ## 添加项目
 
