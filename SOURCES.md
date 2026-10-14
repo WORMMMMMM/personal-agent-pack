@@ -30,5 +30,6 @@
 - 项目上下文习惯：2026-06-09 project-ai-context-file 用户记忆。
 - 初始工作流：已有 google-calendar-natural-language-scheduling、notion-diary-capture、goal-progress-assistant 技能及其参考资料。
 - 本次会话：记录留在原系统；2026-10-09 用户将第一版收敛为个人信息、偏好、工作流、维护技能与 project map。
+- 2026-10-14 各 agent 记忆汇总：从 Codex 记忆（memory_summary）、Command Code taste、Claude Code 项目记忆中整理候选，Notion Memory 为空；用户逐条确认后写入个人信息、偏好与 project map，设备一条按用户更正（Jetson Thor 与 NUC 都可用、都在实验室内网）。同日用户确认个人信息的及时同步规则：明确陈述即保存、个人信息与偏好修改直接推送、定期收集各 agent 记忆候选、各 agent 把用户事实写主库。
 
 范围说明：读取了七个会话的近期内容、相关旧页和现有技能；生活记录与早报额外对原始用户消息做了定向检索。没有声称穷尽所有历史。候选解释不得自动升级为个人事实。

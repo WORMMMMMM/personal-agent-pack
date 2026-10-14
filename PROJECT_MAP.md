@@ -17,6 +17,28 @@
 - 入口：实验室内的固定 IP 主机 SER8；实验室外经 WireGuard 接入内网后访问。
 - lookup: 部署与运行现状以主机实际状态为准，不在主库记录进度。
 
+### RoboMaster 哨兵导航
+
+- 用途：TsingYun 战队哨兵的感知与导航。
+- 仓库：https://github.com/TsingYun-RoboMaster/RM_Vision_Sentry
+- local: Mac 上 `~/Robomaster/Navigation/`（RM_Vision_Sentry、仿真器、learning、maintenance 等）；战队其他资料在 `~/Robomaster/`。
+- 硬件：Jetson Thor 与 NUC，在实验室内网（见 [个人信息](profile/about.md)）。
+- lookup: 先读仓库内的 AGENTS.md／AI_CONTEXT.md 等上下文文件，以仓库和实机现状为准。
+
+### 课程
+
+- local: Mac 上 `~/School/<课程名>/`，每门课一个文件夹。
+- lookup: 用户给出课程或文件夹时先读其中资料；作业要求以资料原文为准。
+
+### 阅读
+
+- local: Mac 上 `~/Readings`（论文、书籍与批注整理）；阅读笔记见下方 My readings。
+
+### 发票与报销
+
+- local: Mac 上 `~/发票`。
+- lookup: 按 [个人偏好](preferences/core.md) 的报销规则整理；明细不进主库。
+
 ### calendar
 
 - service: Google Calendar（主日历，唯一真相源；2026-10-13 起）

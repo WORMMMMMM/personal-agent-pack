@@ -13,7 +13,7 @@
 | 文章输出 | [personal-article-writing](skills/personal-article-writing/SKILL.md) |
 | 记住偏好、修改流程、更新项目入口 | [maintain-personal-hub](skills/maintain-personal-hub/SKILL.md) |
 
-完成相关工作前，按维护技能检查是否有用户明确要求沉淀的变化；直接维护适用原件，避免只留在会话记忆里。推测不升级为事实。业务明细留在原系统。
+完成相关工作前，按维护技能检查是否有用户明确要求沉淀的变化；直接维护适用原件，避免只留在会话记忆里。用户明确陈述的个人事实和长期习惯写入主库，不只存进各 agent 自己的记忆（2026-10-14）。推测不升级为事实。业务明细留在原系统。
 
 Claude Code 通过根目录 CLAUDE.md 读取本文件；`.claude/skills/` 下是指向上表原件的技能入口，只含 name、description 和一行指引。
 
