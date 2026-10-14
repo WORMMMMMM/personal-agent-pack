@@ -15,6 +15,11 @@
 
 完成相关工作前，按维护技能检查是否有用户明确要求沉淀的变化；直接维护适用原件，避免只留在会话记忆里。推测不升级为事实。业务明细留在原系统。
 
-Claude Code 通过根目录 CLAUDE.md 读取本文件；`.claude/skills/` 下是指向上表原件的技能入口，只含 name、description 和一行指引。Windows 台式机（DESKTOP-7F43U5M）的 `~/.claude/skills/` 另有一套同样的用户级入口，指向该机主库 `C:\Users\ziming\workspace\personal-agent-pack`，让任何目录的 Claude Code 会话都能用（2026-10-14 用户要求）。改技能名称或 description 时两处都同步；用户级入口不在 Git 里，只能在那台机器上改。
+Claude Code 通过根目录 CLAUDE.md 读取本文件；`.claude/skills/` 下是指向上表原件的技能入口，只含 name、description 和一行指引。
 
-当前第一版为纯文件主库：没有安装器、生成副本或自动同步服务。跨设备通过 Git 获取同一份原件；不同设备路径、授权与会话可访问性需单独核实。保持结构简单，未经用户要求不重新引入适配框架。历史来源见 [SOURCES.md](SOURCES.md)。
+用户要求技能完整安装在各个 agent 里，同时主库保持最新（2026-10-14）。原则：主库是唯一原件，只改主库；各 agent 的技能从主库单向获得，不在副本上改。
+- 能读本机文件的 agent 直接用原件：MacBook Air 上 Claude Code 与 Codex 的用户级技能目录（`~/.claude/skills/`、`~/.codex/skills/`）是指向 `skills/` 各目录的软链接，Command Code 在其设置里直接登记了主库的 `skills/` 目录。Windows 台式机（DESKTOP-7F43U5M）的 `~/.claude/skills/` 目前仍是只含 name、description 和一行指引的入口，指向该机主库 `C:\Users\ziming\workspace\personal-agent-pack`。这些都不在 Git 里，只能在对应机器上改。
+- claude.ai 读不到本机文件，用 `scripts/build-claude-ai-skills.sh` 打包的副本（输出到不入库的 `exports/`），由用户在 claude.ai 上传；主库技能或共享文件变化后需重新打包上传。
+- 主库更新：`scripts/auto-pull.sh` 只在工作区干净且能快进时拉取，不提交不推送，可由本机定时任务调用。改动仍按维护技能提交并推送。
+
+增删技能或改名称、description 时，同步 `.claude/skills/` 入口和各机器的用户级安装，并提醒用户重新上传 claude.ai 副本。不同设备路径、授权与会话可访问性需单独核实。保持结构简单，除上述两个脚本外不引入安装器或适配框架。历史来源见 [SOURCES.md](SOURCES.md)。
