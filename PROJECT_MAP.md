@@ -18,6 +18,25 @@
 - NAS：`C:\Users\ziming\NAS`（SER8 个人工作空间内；SMB 共享名 `NAS`；Mac 挂载于 `/Volumes/NAS`，手机经 WireGuard 接入。2026-10-16 从 `C:\NAS` 迁入工作空间）。
 - NAS 分区按用户在做的事情：`Robomaster`、`辅导员`、`学校课程`、`科研`、`生活`、`阅读`；课程资料在 `学校课程`、论文与书在 `阅读`，Mac 本地对应资料已于 2026-10-15 迁入。
 - lookup: 部署与运行现状以主机实际状态为准，不在主库记录进度。
+- 主机身份：本机 Windows 台式机（DESKTOP-7F43U5M）提供 SMB 共享 `NAS`（`C:\Users\ziming\NAS`），即 SER8 工作空间所在的那台常开主机（2026-10-18 核实）。
+
+### GLM（TsingYun 中转站）
+
+- 用途：给批量、重复、可并行的工程活与常驻任务提供便宜额度；对应 [TEAM.md](TEAM.md) 的中级工程师。
+- service: OpenAI 兼容中转站，`https://39.96.77.156/v1`。联网即可直连，不绑定某台机器。
+- models: `glm-5.2`、`glm-5.3`、`glm-5.3-flash`。三者都是推理模型，正文可能只出现在 `reasoning_content`；调用要给足 `max_tokens`，并同时读取 `content` 与 `reasoning_content`。
+- 已接入: Windows/SER8 主机的 Command Code —— BYOK provider id `tsingyunglm`，定义在 `~/.commandcode/providers.json`；密钥存在 `~/.commandcode/auth.json` 的 `tsingyunglm.key`（0600），不进主库。
+- lookup: 在 Command Code 里用 `/connect` 查看该 provider、用 `/model` 选用 `tsingyunglm/*`。切成 BYOK 模型后，会话内的压缩、子代理、标题生成也一并走它，不会回落到主计划额度。脚本或其他 agent 直接按 OpenAI 兼容调用：
+
+  ```bash
+  curl -s https://39.96.77.156/v1/chat/completions \
+    -H "Authorization: Bearer $GLM_API_KEY" -H "Content-Type: application/json" \
+    -d '{"model":"glm-5.3-flash","messages":[{"role":"user","content":"..."}],"max_tokens":2048}'
+  ```
+
+- caution: 第三方中转站，提示词与回复都经过它。辅导员资料里的学生个人信息、涉密科研数据不得经此发送。
+- verified_on: 2026-10-18
+- verification: `GET /v1/models` 返回上述三个模型；`POST /v1/chat/completions`（`glm-5.3-flash`）实测正常返回。
 
 ### RoboMaster 哨兵导航
 

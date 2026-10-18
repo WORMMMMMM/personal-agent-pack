@@ -17,6 +17,7 @@
 - 研究与决策找研究员（Claude）。
 - 杂活、调度与跨角色协调由管家（Command Code）负责。
 - 额度原则：工程执行尽量消耗 ChatGPT／GLM 订阅额度；Command Code 额度留给调度与杂活，不用于工程执行。
+- 怎么叫到中级工程师（GLM）：走 TsingYun 中转站，端点、模型与调用方式见 [PROJECT_MAP](PROJECT_MAP.md) 的「GLM（TsingYun 中转站）」（2026-10-18 起可用）。学生个人信息与涉密数据不得经该中转站。
 
 ## 执行与存续
 
