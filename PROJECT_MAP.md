@@ -34,9 +34,16 @@
     -d '{"model":"glm-5.3-flash","messages":[{"role":"user","content":"..."}],"max_tokens":2048}'
   ```
 
+- 派活（其他 agent 让 GLM 动手改文件、跑命令）：先切到任务目录，再无头启动 Command Code，`--local-only` 保证只走中转站、不耗 Command Code 额度：
+
+  ```powershell
+  commandcode --no-auto-update --local-only --skip-onboarding --trust --no-session -m tsingyunglm/glm-5.3-flash --yolo --max-turns 10 -p "<任务>"
+  ```
+
+  `-p` 无头模式默认扣下写文件与 shell 工具，不加 `--yolo` 只能读不能写（accept-edits 加 `--tools-all` 也不行）；`--no-auto-update` 防止调用时自行升级。yolo 下它可在当前目录随意读写执行，工作目录只给任务文件夹。Claude Code 侧在 `~/.claude/settings.json` 用一条匹配上述命令前缀（到 `-m tsingyunglm/` 为止）的 PowerShell allow 规则免确认（2026-10-18 用户确认采用 yolo）。
 - caution: 第三方中转站，提示词与回复都经过它。辅导员资料里的学生个人信息、涉密科研数据不得经此发送。
 - verified_on: 2026-10-18
-- verification: `GET /v1/models` 返回上述三个模型；`POST /v1/chat/completions`（`glm-5.3-flash`）实测正常返回。
+- verification: `GET /v1/models` 返回上述三个模型；`POST /v1/chat/completions`（`glm-5.3-flash`）实测正常返回；Claude Code 经上述无头命令调起 `tsingyunglm/glm-5.3-flash`，在临时目录完成读文件、求和、写文件并回读核对（2026-10-18）。
 
 ### RoboMaster 哨兵导航
 
