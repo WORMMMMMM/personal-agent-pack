@@ -78,7 +78,7 @@
 - tooling: yt-dlp（Python 模块）、ffmpeg（WinGet 包目录，不在 PATH）、faster-whisper 1.2.1 + PyAV 18（**PyAV 19 会报 `metadata_errors` 错，需 `<19`**）；模型走 `HF_ENDPOINT=https://hf-mirror.com`，CPU int8。
 - 报告: 按 `report_template.md` 的九段结构写，逐条附时间戳；只在幻灯片里的图表/代码需要按时间抽帧另看。
 - verified_on: 2026-10-19
-- verification: `BV1i88A65E7r`（25:08）实测跑通：下载音频 → 16k 单声道 wav → 转写 395 段，RTF 0.149（225 秒），产出 SRT/时间戳文本/JSON，并生成 `report.md`。
+- verification: `BV1i88A65E7r`（25:08）实测跑通：下载音频 → 16k 单声道 wav → 转写 395 段，RTF 0.149（225 秒）。同一音频换 `medium`：432 段、RTF 0.448（676 秒），「哨兵 / Mid-360 / 仿真」等同音错误消失，但专业术语（闭式求解、麦轮）仍会错；术语密集的内容可再给 `asr.py --initial-prompt` 塞领域词表。产出 SRT/时间戳文本/JSON，并生成 `report.md`。
 
 ### 阅读
 
