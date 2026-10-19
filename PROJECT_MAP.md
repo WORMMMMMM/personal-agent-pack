@@ -68,6 +68,18 @@
 - verified_on: 2026-10-16
 - verification: 已列出目录树（深度 3）；成功读取 `学生信息\无45班级名单_待定.xlsx`（31 人、10 字段），确认可读。
 
+### 视频 → 文字稿 → 报告
+
+- 用途：给一个视频链接（B 站、YouTube 等 yt-dlp 支持的站点），产出带时间戳文字稿，再据此写报告。
+- local: `C:\Users\ziming\workspace\video-pipeline`（SER8 本机）。
+- 用法: `powershell -ExecutionPolicy Bypass -File pipe.ps1 -Url "<链接>"`；术语密集内容加 `-Model medium`；无视平台字幕强制转写加 `-ForceAsr`。
+- 产物: `jobs\<BV号>[_p分P]\` 下的 `metadata.info.json`、`audio.wav`、`transcript.srt`、`transcript.timed.txt`、`transcript.json`、`report.md`。
+- 策略: 平台中文字幕优先（不占 CPU）；没有字幕才下载音频并本地转写。
+- tooling: yt-dlp（Python 模块）、ffmpeg（WinGet 包目录，不在 PATH）、faster-whisper 1.2.1 + PyAV 18（**PyAV 19 会报 `metadata_errors` 错，需 `<19`**）；模型走 `HF_ENDPOINT=https://hf-mirror.com`，CPU int8。
+- 报告: 按 `report_template.md` 的九段结构写，逐条附时间戳；只在幻灯片里的图表/代码需要按时间抽帧另看。
+- verified_on: 2026-10-19
+- verification: `BV1i88A65E7r`（25:08）实测跑通：下载音频 → 16k 单声道 wav → 转写 395 段，RTF 0.149（225 秒），产出 SRT/时间戳文本/JSON，并生成 `report.md`。
+
 ### 阅读
 
 - local: Mac 上 `~/Readings`（论文、书籍与批注整理）；阅读笔记见下方 My readings。
