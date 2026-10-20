@@ -3,7 +3,8 @@
 先读取主库 [PROJECT_MAP.md](../../../PROJECT_MAP.md)，再核对实时 schema、目标页和子数据库。Hub 只保存位置及规则。
 
 ## 状态与结构
-- 现有目标数据库字段包括 Name、Status、Importance、Urgency、DDL；运行时核对。
+- 现有目标数据库字段包括 Name、Status、Importance、Urgency、DDL、开始日期、起点、当前阶段、最近进展（后四个 2026-10-20 加入）；运行时核对。
+- 视图「进展时间线」按 开始日期 → 最近进展 显示 In Progress 目标；开始日期和当前阶段固定显示在目标页标题下。
 - 常见活跃状态 Not Started、In Progress；暂停 Paused，完成 Succeeded；保留历史和用户陈述。
 - 是否免提醒、提醒时间、当前目标值、周期起点从目标页／既有提醒读取，不根据过往目标清单推定。
 - 详细学习记录优先写入该目标已有子页；保留父页当前状态、日期历史与原话。
