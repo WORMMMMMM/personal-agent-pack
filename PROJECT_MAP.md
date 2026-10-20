@@ -15,10 +15,10 @@
 
 - 用途：AI 服务器与个人 NAS；AI 团队的常驻执行锚点（角色分工见 [TEAM.md](TEAM.md)）。
 - 入口：实验室内的固定 IP 主机 SER8；实验室外经 WireGuard 接入内网后访问。
-- NAS：`C:\Users\ziming\NAS`（SER8 个人工作空间内；SMB 共享名 `NAS`；Mac 挂载于 `/Volumes/NAS`，手机经 WireGuard 接入。2026-10-16 从 `C:\NAS` 迁入工作空间）。
+- NAS：数据在 `C:\Users\ziming\NAS`（SER8 个人工作空间内）；SMB 共享名 `NAS` 自 2026-10-19 起指向 `C:\Users\ziming`（用户目录），Mac 挂载于 `/Volumes/NAS` 即用户目录，NAS 资料位于其下 `NAS/` 子目录；手机经 WireGuard 接入。2026-10-16 从 `C:\NAS` 迁入工作空间。
 - NAS 分区按用户在做的事情：`Robomaster`、`辅导员`、`学校课程`、`科研`、`生活`、`阅读`；课程资料在 `学校课程`、论文与书在 `阅读`，Mac 本地对应资料已于 2026-10-15 迁入。
 - lookup: 部署与运行现状以主机实际状态为准，不在主库记录进度。
-- 主机身份：本机 Windows 台式机（DESKTOP-7F43U5M）提供 SMB 共享 `NAS`（`C:\Users\ziming\NAS`），即 SER8 工作空间所在的那台常开主机（2026-10-18 核实）。
+- 主机身份：本机 Windows 台式机（DESKTOP-7F43U5M）提供 SMB 共享 `NAS`（2026-10-19 起指向 `C:\Users\ziming`，NAS 数据在其 `NAS` 子目录），即 SER8 工作空间所在的那台常开主机（2026-10-18 核实）。
 
 ### GLM（TsingYun 中转站）
 
@@ -162,7 +162,7 @@
 - source_thread: 01a08b48-481b-7d91-858e-59d23efe5365
 - title: 文章输出
 - lookup: 优先用本次提供的原文、论文和批注；历史文章按会话或本地路径检索，仅在相关时读取。
-- local_readings: /Volumes/NAS/阅读（SER8 NAS，Mac 经 SMB 挂载；原 ~/Readings 已迁入）
+- local_readings: /Volumes/NAS/NAS/阅读（SER8 NAS；Mac 经 SMB 挂载用户目录，NAS 数据在其 `NAS/` 子目录；原 ~/Readings 已迁入）
 - freshness: 当前任务的资料优先，旧文不作为新论文事实证据。
 
 ### 早报
